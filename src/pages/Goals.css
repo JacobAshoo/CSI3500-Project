@@ -1,0 +1,45 @@
+/* Goals.css */
+.page-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.goal-input-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.goal-input-card input {
+  padding: 10px;
+  width: 80%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.goal-input-card button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.goal-input-card button:hover {
+  background-color: #0056b3;
+}
+
+.goals-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.goals-list li {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+

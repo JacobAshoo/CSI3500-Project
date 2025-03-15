@@ -1,0 +1,83 @@
+/* Overall container for the page */
+.recommended-resources-container {
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Back button styling */
+.back-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Page title */
+.page-title {
+  font-size: 2rem;
+  color: #333;
+  margin-top: 50px;
+}
+
+/* Grid layout for resources */
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* Individual resource card style */
+.resource-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.resource-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Resource title */
+.resource-title {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* Resource description */
+.resource-description {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+/* Button for each resource */
+.view-btn {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-btn:hover {
+  background-color: #218838;
+}
+
