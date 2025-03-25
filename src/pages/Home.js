@@ -27,13 +27,48 @@ const ActivityCard = ({ title, items }) => (
   </div>
 );
 
-const UserInputCard = () => (
-  <div className="user-input-card">
-    <h3>Set Learning Goals</h3>
-    <input type="text" placeholder="Enter your goal" />
-    <button>Save</button>
-  </div>
-);
+const UserInputCard = () => {
+  const [goal, setGoal] = useState("");
+  const [goalsList, setGoalsList] = useState([]);
+
+  // Load goals when component mounts
+  useEffect(() => {
+    const savedGoals = JSON.parse(localStorage.getItem("learningGoals")) || [];
+    setGoalsList(savedGoals);
+  }, []);
+
+  const handleGoalSubmit = () => {
+    if (goal.trim() !== "") {
+      const updatedGoals = [...goalsList, goal];
+      setGoalsList(updatedGoals);
+      localStorage.setItem("learningGoals", JSON.stringify(updatedGoals));
+      setGoal(""); // Clear input after saving
+    }
+  };
+
+  return (
+    <div className="user-input-card">
+      <h3>Set Learning Goals</h3>
+      <input 
+        type="text" 
+        placeholder="Enter your goal" 
+        value={goal}
+        onChange={(e) => setGoal(e.target.value)}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            handleGoalSubmit();
+          }
+        }}
+      />
+      <button onClick={handleGoalSubmit}>Save</button>
+      <div className="recent-goals">
+        {goalsList.slice(-2).map((g, index) => (
+          <p key={index}>{g}</p>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Home = () => {
   const [layout, setLayout] = useState([]);
@@ -102,6 +137,7 @@ const Home = () => {
         <Link to="/recommended-resources">Recommended Resources</Link>
         <Link to="/feedback">Feedback</Link>
         <Link to="/profile">Profile</Link>
+        <Link to="/goals">Goals</Link>
       </div>
 
       <h2>Welcome, Student!</h2>
