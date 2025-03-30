@@ -9,7 +9,7 @@ const Goals = () => {
   const [goal, setGoal] = useState("");
   const [goalsList, setGoalsList] = useState([]);
 
-  // 🔹 Load goals from Local Storage when the component mounts
+  // Load goals from Local Storage when the component mounts
   useEffect(() => {
     const savedGoals = JSON.parse(localStorage.getItem("learningGoals"));
     if (savedGoals && Array.isArray(savedGoals)) {
@@ -17,7 +17,7 @@ const Goals = () => {
     }
   }, []);
 
-  // 🔹 Save goals to Local Storage whenever goalsList changes
+  // Save goals to Local Storage whenever goalsList changes
   useEffect(() => {
     if (goalsList.length > 0) {
       localStorage.setItem("learningGoals", JSON.stringify(goalsList));
@@ -26,12 +26,12 @@ const Goals = () => {
     }
   }, [goalsList]);
 
-  // 🔹 Handle input change
+  // Handle input change
   const handleGoalChange = (e) => {
     setGoal(e.target.value);
   };
 
-  // 🔹 Add a new goal to the list
+  // Add a new goal to the list
   const handleAddGoal = () => {
     if (goal.trim() !== "") {
       setGoalsList([...goalsList, goal]);
@@ -39,7 +39,7 @@ const Goals = () => {
     }
   };
 
-  // 🔹 Delete a goal
+  // Delete a goal
   const handleDeleteGoal = (index) => {
     const updatedGoals = goalsList.filter((_, i) => i !== index);
     setGoalsList(updatedGoals);
