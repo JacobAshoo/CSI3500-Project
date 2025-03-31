@@ -40,5 +40,21 @@
 
 .feedback-history li {
   margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
+.feedback-history button {
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.feedback-history button:hover {
+  background-color: #c82333;
+}

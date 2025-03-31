@@ -1,52 +1,72 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './Feedback.css';
 
-const Feedback = () => {
-  const navigate = useNavigate();
-  
+function Feedback() {
   const [feedback, setFeedback] = useState('');
-  const [feedbackHistory, setFeedbackHistory] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false); // To prevent premature saving
 
-  const handleFeedbackChange = (e) => {
-    setFeedback(e.target.value);
-  };
+  // Load feedback from localStorage
+  useEffect(() => {
+    try {
+      const storedFeedback = JSON.parse(localStorage.getItem('feedbackHistory'));
+      if (Array.isArray(storedFeedback)) {
+        setHistory(storedFeedback);
+      }
+    } catch (error) {
+      console.error('Failed to parse feedback from localStorage:', error);
+    } finally {
+      setHasLoaded(true);
+    }
+  }, []);
 
-  const handleSubmitFeedback = () => {
+  // Save to localStorage only after loading existing data
+  useEffect(() => {
+    if (hasLoaded) {
+      localStorage.setItem('feedbackHistory', JSON.stringify(history));
+    }
+  }, [history, hasLoaded]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (feedback.trim() !== '') {
-      setFeedbackHistory([...feedbackHistory, feedback]);
+      setHistory([feedback, ...history]);
       setFeedback('');
     }
   };
 
+  const handleDelete = (indexToDelete) => {
+    const updatedHistory = history.filter((_, index) => index !== indexToDelete);
+    setHistory(updatedHistory);
+  };
+
   return (
-    <div className="page-content feedback">
-      <button className="back-btn" onClick={() => navigate(-1)}>Back</button>
-
-      <h2>Submit Your Feedback</h2>
-
-      {/* Feedback Form */}
-      <div className="feedback-form">
+    <div className="page-content">
+      <h1>Feedback</h1>
+      <form onSubmit={handleSubmit} className="feedback-form">
         <textarea
           value={feedback}
-          onChange={handleFeedbackChange}
-          placeholder="Enter your feedback"
+          onChange={(e) => setFeedback(e.target.value)}
+          placeholder="Enter your feedback here..."
         />
-        <button onClick={handleSubmitFeedback}>Submit</button>
-      </div>
-
-      {/* Feedback History */}
+        <br />
+        <button type="submit">Submit</button>
+      </form>
       <div className="feedback-history">
-        <h3>Previous Feedback</h3>
+        <h2>Previous Feedback</h2>
         <ul>
-          {feedbackHistory.map((feedback, index) => (
-            <li key={index}>{feedback}</li>
+          {history.map((entry, index) => (
+            <li key={index}>
+              {entry}
+              <button onClick={() => handleDelete(index)}>
+                Delete
+              </button>
+            </li>
           ))}
         </ul>
       </div>
     </div>
   );
-};
+}
 
 export default Feedback;
-
