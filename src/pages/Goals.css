@@ -7,7 +7,7 @@
 
 .goal-input-card {
   margin-bottom: 20px;
-  background-color: #1E1E1E;
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -52,7 +52,7 @@
 }
 
 .goal-card {
-  background-color: #2A2A2A;
+  background-color: #fffffffa;
   padding: 20px;
   border-radius: 10px;
   display: flex;
@@ -71,7 +71,7 @@
 }
 
 .delete-btn {
-  background: #28a745;
+  background: #28a73b;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -86,7 +86,7 @@
 }
 
 .goal-card:hover {
-  background-color: #3A3A3A;
+  background-color: #ffffff;
   transition: background-color 0.3s ease;
 }
 
