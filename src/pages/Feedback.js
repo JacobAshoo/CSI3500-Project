@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import './Feedback.css';
 
 function Feedback() {
+  const navigate = useNavigate();
   const [feedback, setFeedback] = useState('');
   const [history, setHistory] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false); // To prevent premature saving
@@ -42,6 +44,7 @@ function Feedback() {
 
   return (
     <div className="page-content">
+      <button className="back-btn" onClick={() => navigate(-1)}>Back</button>
       <h1>Feedback</h1>
       <form onSubmit={handleSubmit} className="feedback-form">
         <textarea
