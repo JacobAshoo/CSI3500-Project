@@ -1,0 +1,28 @@
+/* ConfidenceLevels.css */
+.confidence-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.confidence-container {
+  margin-top: 20px;
+}
+
+.confidence-slider {
+  width: 80%;
+  margin: 20px 0;
+}
+
+.navigate-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navigate-btn:hover {
+  background-color: #0056b3;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import ProgressTracking from './pages/ProgressTracking';
+import ConfidenceLevels from './pages/ConfidenceLevels';  // Update the path for ConfidenceLevels
 import RecommendedResources from './pages/RecommendedResources';
 import Profile from './pages/Profile';
 import Goals from './pages/Goals';
@@ -20,6 +21,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/progress" element={<ProgressTracking />} />
+          <Route path="/confidence-levels" element={<ConfidenceLevels />} />
           <Route path="/recommended-resources" element={<RecommendedResources />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/goals" element={<Goals />} />

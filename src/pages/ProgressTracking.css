@@ -66,3 +66,19 @@
   background-color: #0056b3;
 }
 
+/* New Styling for Confidence Levels Button */
+.navigate-btn {
+  position: absolute;
+  top: 50px;
+  right: 20px; /* You can adjust the position */
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navigate-btn:hover {
+  background-color: #218838;
+}
