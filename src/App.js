@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import ProgressTracking from './pages/ProgressTracking';
-import ConfidenceLevels from './pages/ConfidenceLevels';  // Update the path for ConfidenceLevels
+import ConfidenceLevels from './pages/ConfidenceLevels';
 import RecommendedResources from './pages/RecommendedResources';
 import Profile from './pages/Profile';
 import Goals from './pages/Goals';
@@ -10,10 +10,16 @@ import Feedback from './pages/Feedback';
 import './App.css';
 
 const App = () => {
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  }, []);
+
   return (
     <Router>
       <div className="App">
-        {/* Display the title at the top */}
         <header className="app-header">
           <h1>Personalized Learning Dashboard</h1>
         </header>
@@ -33,4 +39,3 @@ const App = () => {
 };
 
 export default App;
-

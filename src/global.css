@@ -1,0 +1,183 @@
+/* global.css */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600&display=swap');
+
+:root {
+  /* Light Mode - Softer Emerald & Sand Theme */
+  --primary-color: #66bb6a;         /* Softer green */
+  --secondary-color: #81c784;       /* Lighter green */
+  --accent-color: #f5a623;          /* Soft orange accent */
+  --bg-color: #fdf6ec;              /* Light beige */
+  --card-bg: #f5efe4;               /* Slightly darker beige for contrast */
+  --text-color: #2e2e2e;
+  --text-light: #777777;
+  --header-bg: #ece5da;
+  --bar-bg: #e0dcd2;
+
+  /* Effects */
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  --radius: 10px;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+.app-header {
+  background: var(--primary-color);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: var(--shadow);
+}
+
+/* Page Container */
+.page-content {
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Navigation Bar */
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  background-color: var(--primary-color);
+  padding: 16px 20px;
+  margin: 0 auto 30px;
+  max-width: 1200px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 95%;
+  transition: var(--transition);
+}
+
+.nav-bar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: transparent;
+  transition: var(--transition);
+}
+
+.nav-bar a:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+button,
+input[type="submit"] {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+  font-size: 1rem;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 15px 0;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background-color: #f0e7dc;
+  color: var(--text-color);
+}
+
+input,
+textarea {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-light);
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+/* Utility Classes */
+.text-light {
+  color: var(--text-light);
+}
+
+.center {
+  text-align: center;
+}
+
+/* 🌑 Dark Mode Overrides */
+.dark-mode {
+  --bg-color: #121212;
+  --card-bg: #1f1f1f;
+  --header-bg: #2a2a2a;
+  --bar-bg: #444;
+  --text-color: #e0e0e0;
+  --text-light: #a0a0a0;
+  --primary-color: #66bb6a;    /* same soft green */
+  --secondary-color: #81c784;
+  --accent-color: #fbc02d;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}

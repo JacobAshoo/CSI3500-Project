@@ -15,7 +15,7 @@ const ConfidenceLevels = () => {
 
   // Initialize the state with values from localStorage if available, otherwise use default values
   const [confidenceLevels, setConfidenceLevels] = useState(() => {
-    const savedConfidence = localStorage.getItem('confidenceLevels');
+    const savedConfidence = localStorage.getItem('ConfidenceLevels');
     if (savedConfidence) {
       return JSON.parse(savedConfidence);
     } else {

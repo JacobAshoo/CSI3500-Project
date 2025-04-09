@@ -1,28 +1,30 @@
 /* ConfidenceLevels.css */
+
 .confidence-page {
-  padding: 20px;
   text-align: center;
 }
 
+/* Individual slider sections */
 .confidence-container {
-  margin-top: 20px;
+  margin: 30px auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 80%;
+  max-width: 600px;
 }
 
 .confidence-slider {
-  width: 80%;
+  width: 100%;
   margin: 20px 0;
 }
 
-.navigate-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.confidence-container h3 {
+  margin-bottom: 10px;
 }
 
-.navigate-btn:hover {
-  background-color: #0056b3;
+.confidence-container p {
+  font-weight: 600;
+  color: var(--text-color);
 }

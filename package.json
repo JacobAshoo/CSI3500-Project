@@ -7,12 +7,15 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "html-docx-js": "^0.3.1",
+    "lucide-react": "^0.487.0",
     "personalized-learning-dashboard": "file:",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-grid-layout": "^1.5.1",
     "react-router-dom": "^7.4.0",
     "react-scripts": "5.0.1",
+    "react-to-print": "^3.0.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

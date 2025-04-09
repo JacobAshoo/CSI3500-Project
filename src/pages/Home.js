@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Responsive as ResponsiveGridLayout } from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 import './Home.css';
 import '/node_modules/react-grid-layout/css/styles.css';
 import '/node_modules/react-resizable/css/styles.css';
 
-// Define components first
+
+const ResponsiveGridLayout = WidthProvider(Responsive);
+
 const ProgressBox = () => (
   <div className="progress-box">
     <h3>Overall Progress</h3>
@@ -28,36 +30,33 @@ const ActivityCard = ({ title, items }) => (
 );
 
 const UserInputCard = () => {
-  const [goal, setGoal] = useState("");
+  const [goal, setGoal] = useState('');
   const [goalsList, setGoalsList] = useState([]);
 
-  // Load goals when component mounts
   useEffect(() => {
-    const savedGoals = JSON.parse(localStorage.getItem("learningGoals")) || [];
+    const savedGoals = JSON.parse(localStorage.getItem('learningGoals')) || [];
     setGoalsList(savedGoals);
   }, []);
 
   const handleGoalSubmit = () => {
-    if (goal.trim() !== "") {
+    if (goal.trim() !== '') {
       const updatedGoals = [...goalsList, goal];
       setGoalsList(updatedGoals);
-      localStorage.setItem("learningGoals", JSON.stringify(updatedGoals));
-      setGoal(""); // Clear input after saving
+      localStorage.setItem('learningGoals', JSON.stringify(updatedGoals));
+      setGoal('');
     }
   };
 
   return (
     <div className="user-input-card">
       <h3>Set Learning Goals</h3>
-      <input 
-        type="text" 
-        placeholder="Enter your goal" 
+      <input
+        type="text"
+        placeholder="Enter your goal"
         value={goal}
         onChange={(e) => setGoal(e.target.value)}
         onKeyPress={(e) => {
-          if (e.key === 'Enter') {
-            handleGoalSubmit();
-          }
+          if (e.key === 'Enter') handleGoalSubmit();
         }}
       />
       <button onClick={handleGoalSubmit}>Save</button>
@@ -72,36 +71,36 @@ const UserInputCard = () => {
 
 const Home = () => {
   const [layout, setLayout] = useState([]);
-  const [widgets] = useState([
-    { 
-      id: 'progress', 
-      component: ProgressBox,
-      defaultSize: { w: 3, h: 2, minW: 2, minH: 2 }
-    },
-    { 
-      id: 'recent', 
-      component: () => <ActivityCard 
-        title="Recent Activity" 
-        items={['Completed Module 1', 'Finished Practice Quiz']} 
-      />,
-      defaultSize: { w: 2, h: 2, minW: 2, minH: 2 }
-    },
-    { 
-      id: 'upcoming', 
-      component: () => <ActivityCard 
-        title="Upcoming Tasks" 
-        items={['Complete Module 2', 'Review Lesson 4']} 
-      />,
-      defaultSize: { w: 2, h: 2, minW: 2, minH: 2 }
-    },
-    { 
-      id: 'goals', 
-      component: UserInputCard,
-      defaultSize: { w: 3, h: 2, minW: 2, minH: 2 }
-    }
-  ]);
 
-  // Load layout from localStorage
+  const widgets = [
+    {
+      id: 'progress',
+      component: ProgressBox
+    },
+    {
+      id: 'recent',
+      component: () => (
+        <ActivityCard
+          title="Recent Activity"
+          items={['Completed Module 1', 'Finished Practice Quiz']}
+        />
+      )
+    },
+    {
+      id: 'upcoming',
+      component: () => (
+        <ActivityCard
+          title="Upcoming Tasks"
+          items={['Complete Module 2', 'Review Lesson 4']}
+        />
+      )
+    },
+    {
+      id: 'goals',
+      component: UserInputCard
+    }
+  ];
+
   useEffect(() => {
     const savedLayout = localStorage.getItem('dashboardLayout');
     if (savedLayout) {
@@ -109,26 +108,20 @@ const Home = () => {
     }
   }, []);
 
-  // Save layout to localStorage
   const saveLayout = (newLayout) => {
+    setLayout(newLayout);
     localStorage.setItem('dashboardLayout', JSON.stringify(newLayout));
   };
 
-  const handleLayoutChange = (newLayout) => {
-    setLayout(newLayout);
-    saveLayout(newLayout);
-  };
-
-
   const defaultLayout = widgets.map((widget, index) => ({
-  i: widget.id,
-  x: 0,  // All widgets start at x=0 (leftmost position)
-  y: index * 2,  // Stack vertically with spacing
-  w: 12,  // Full width (12 columns)
-  h: widget.defaultSize.h,
-  minW: 12, // Force single column
-  minH: widget.defaultSize.minH
-}));
+    i: widget.id,
+    x: 0,
+    y: index * 2,
+    w: 12,
+    h: 2,
+    minW: 12,
+    minH: 2
+  }));
 
   return (
     <div className="page-content home">
@@ -142,26 +135,28 @@ const Home = () => {
 
       <h2>Welcome, Student!</h2>
 
-      <ResponsiveGridLayout
-        className="layout"
-        layouts={{ lg: layout.length ? layout : defaultLayout }}
-        breakpoints={{ lg: 768 }}
-        cols={{ lg: 12 }}
-        rowHeight={100}
-        width={800}
-        onLayoutChange={handleLayoutChange}
-        draggableHandle=".widget-header"
-        compactType="vertical"
-      >
-        {widgets.map((widget) => (
-          <div key={widget.id} className="widget">
-            <div className="widget-header">
-              <span>≡</span>
+      <div className="layout-container">
+        <ResponsiveGridLayout
+          className="layout"
+          layouts={{ lg: layout.length ? layout : defaultLayout }}
+          breakpoints={{ lg: 768 }}
+          cols={{ lg: 12 }}
+          rowHeight={100}
+          onLayoutChange={saveLayout}
+          draggableHandle=".widget-header"
+          compactType="vertical"
+          isDraggable={true}
+          isResizable={false}
+          useCSSTransforms={true}
+        >
+          {widgets.map((widget) => (
+            <div key={widget.id} className="widget">
+              <div className="widget-header"><span>≡</span></div>
+              <widget.component />
             </div>
-            <widget.component />
-          </div>
-        ))}
-      </ResponsiveGridLayout>
+          ))}
+        </ResponsiveGridLayout>
+      </div>
     </div>
   );
 };

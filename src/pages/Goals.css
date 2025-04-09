@@ -1,16 +1,17 @@
-/* Goal.css - Updated to match the provided screenshot layout */
+/* Goals.css */
 
-.page-content {
-  padding: 20px;
+.page-content.goals {
   min-height: 100vh;
+  text-align: center;
 }
 
+/* Goal Input Card */
 .goal-input-card {
-  margin-bottom: 20px;
-  background-color: #ffffff;
+  margin: 20px 0;
+  background: var(--card-bg);
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,85 +20,56 @@
 
 .goal-input-card input {
   width: 80%;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  color: #333;
-  font-size: 16px;
 }
 
 .goal-input-card button {
   width: 50%;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
-.goal-input-card button:hover {
-  background-color: #0056b3;
-}
-
+/* Goal List Layout */
 .goal-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Two goals per row */
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 20px;
-  justify-content: center;
   padding: 20px 0;
 }
 
 .goal-card {
-  background-color: #fffffffa;
+  background: var(--card-bg);
   padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   text-align: center;
 }
 
 .goal-text {
-  color: #007BFF;
-  font-size: 18px;
-  font-weight: bold;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1.1rem;
   margin-bottom: 10px;
 }
 
 .delete-btn {
-  background: #28a73b;
+  background: var(--secondary-color);
   color: white;
-  padding: 10px 15px;
+  padding: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: var(--radius);
   cursor: pointer;
-  width: 100px;
-  transition: background-color 0.3s ease;
+  transition: var(--transition);
 }
 
 .delete-btn:hover {
-  background: #218838;
+  background: #34c3a4;
 }
 
-.goal-card:hover {
-  background-color: #ffffff;
-  transition: background-color 0.3s ease;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 800px) {
-  .goal-cards {
-    grid-template-columns: 1fr; 
-  }
   .goal-input-card input {
     width: 100%;
   }
+
   .goal-input-card button {
     width: 80%;
   }
