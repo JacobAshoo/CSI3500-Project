@@ -1,113 +1,148 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProgressTracking.css';
 
 const ProgressTracking = () => {
   const navigate = useNavigate();
 
-  const subjects = [
+  const [subjects, setSubjects] = useState([
     {
       name: 'Mathematics',
-      progress: 70,
       modules: [
-        { name: 'Algebra', progress: 80 },
-        { name: 'Calculus', progress: 60 },
-        { name: 'Geometry', progress: 75 },
-        { name: 'Statistics', progress: 50 },
+        { name: 'Algebra', progress: 0 },
+        { name: 'Calculus', progress: 0 },
+        { name: 'Geometry', progress: 0 },
+        { name: 'Statistics', progress: 0 },
       ]
     },
     {
       name: 'Science',
-      progress: 50,
       modules: [
-        { name: 'Physics', progress: 40 },
-        { name: 'Chemistry', progress: 55 },
-        { name: 'Biology', progress: 60 },
-        { name: 'Astronomy', progress: 30 },
+        { name: 'Physics', progress: 0 },
+        { name: 'Chemistry', progress: 0 },
+        { name: 'Biology', progress: 0 },
+        { name: 'Astronomy', progress: 0 },
       ]
     },
     {
       name: 'History',
-      progress: 80,
       modules: [
-        { name: 'Ancient History', progress: 90 },
-        { name: 'Modern History', progress: 70 },
-        { name: 'World Wars', progress: 85 },
+        { name: 'Ancient History', progress: 0 },
+        { name: 'Modern History', progress: 0 },
+        { name: 'World Wars', progress: 0 },
+        { name: 'US History', progress: 0 },
       ]
     },
     {
       name: 'Literature',
-      progress: 65,
       modules: [
-        { name: 'Shakespeare', progress: 80 },
-        { name: 'Poetry', progress: 60 },
-        { name: 'Modern Literature', progress: 50 },
+        { name: 'Shakespeare', progress: 0 },
+        { name: 'Poetry', progress: 0 },
+        { name: 'Modern Literature', progress: 0 },
+        { name: 'World Literature', progress: 0 },
       ]
     },
     {
       name: 'Art',
-      progress: 55,
       modules: [
-        { name: 'Painting', progress: 60 },
-        { name: 'Sculpture', progress: 50 },
-        { name: 'Photography', progress: 70 },
+        { name: 'Painting', progress: 0 },
+        { name: 'Sculpting', progress: 0 },
+        { name: 'Photography', progress: 0 },
+        { name: 'Drawing', progress: 0 },
       ]
     },
     {
       name: 'Music',
-      progress: 75,
       modules: [
-        { name: 'Theory', progress: 80 },
-        { name: 'Instruments', progress: 70 },
-        { name: 'Composing', progress: 60 },
+        { name: 'Theory', progress: 0 },
+        { name: 'Instruments', progress: 0 },
+        { name: 'Composing', progress: 0 },
       ]
     },
-  ];
+  ]);
+
+  const handleModuleProgressChange = (subjectIndex, moduleIndex, value) => {
+    const newSubjects = [...subjects];
+
+    // handles users inputting progress percentagesd over 100
+    if (value > 100) {
+      value = 100; 
+    }
+
+    newSubjects[subjectIndex].modules[moduleIndex].progress = Number(value);
+    setSubjects(newSubjects);
+  };
+
+  // for setting the overall progress for an entire subject by taking the average of the modules 
+  const getSubjectProgress = (subject)  => {
+    const totalModules = subject.modules.length;
+    const totalProgress = subject.modules.reduce(
+      (sum, module) => sum + module.progress,
+      0
+    );
+    return Math.round(totalProgress / totalModules);
+  };
+  
 
   return (
     <div className="page-content progress-tracking">
-      <button className="back-btn" onClick={() => navigate(-1)}>Back</button>
+      <button className="back-btn" onClick={() => navigate(-1)}>
+        Back
+      </button>
 
       <h2>Progress Overview</h2>
 
-      {/* Confidence Levels Button placed next to Progress Overview */}
       <button className="navigate-btn" onClick={() => navigate('/confidence-levels')}>
         Go to Confidence Levels
       </button>
 
-      {/* Iterate over subjects */}
-      {subjects.map((subject, index) => (
-        <div key={index} className="subject-container">
-          <h3>{subject.name}</h3>
-          <p>Overall Progress: {subject.progress}%</p>
+      {subjects.map((subject, sIndex) => {
+        const subjectProgress = getSubjectProgress(subject);
+        return (
+          <div key={sIndex} className="subject-container">
+            <h3>{subject.name}</h3>
+            <p>Overall Progress: {subjectProgress}%</p>
 
-          {/* Overall Progress Bar */}
-          <div className="progress-bar-container">
-            <div className="progress-bar">
-              <div
-                className="progress-bar-fill"
-                style={{ width: `${subject.progress}%` }}
-              ></div>
+            {/* Subject Progress Bar */}
+            <div className="progress-bar-container">
+              <div className="progress-bar">
+                <div
+                  className="progress-bar-fill"
+                  style={{ width: `${subjectProgress}%` }}
+                ></div>
+              </div>
+            </div>
+
+            {/* Modules */}
+            <div className="modules">
+              {subject.modules.map((module, mIndex) => (
+                <div key={mIndex} className="module-card">
+                  <h4>{module.name}</h4>
+                  <label>Progress:</label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={module.progress}
+                    className="progress-input"
+                    onChange={(e) =>
+                      handleModuleProgressChange(sIndex, mIndex, e.target.value)
+                    }
+                  />
+                  <p>{module.progress}% completed</p>
+
+                  <div className="progress-bar">
+                    <div
+                      className="progress-bar-fill"
+                      style={{ width: `${module.progress}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-
-          {/* Modules for this subject */}
-          <div className="modules">
-            {subject.modules.map((module, index) => (
-              <div key={index} className="module-card">
-                <h4>{module.name}</h4>
-                <p>{module.progress}% completed</p>
-                <div className="progress-bar">
-                  <div
-                    className="progress-bar-fill"
-                    style={{ width: `${module.progress}%` }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

@@ -75,3 +75,19 @@
 .navigate-btn:hover {
   background-color: #34c3a4;
 }
+
+.progress-input {
+  background-color: var(--card-bg);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--radius);
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  margin: 5px;
+  transition: var(--transition);
+}
+
+.progress-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px var(--primary-color);
+}
