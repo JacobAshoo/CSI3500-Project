@@ -1,0 +1,72 @@
+.grades-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .back-btn {
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .page-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+  }
+  
+  .classes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .class-section {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .class-title {
+    color: #27ae60;
+    border-bottom: 2px solid #27ae60;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .grades-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+  
+  .grade-card {
+    background: #f9f9f9;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  
+  .grade-title {
+    color: #2c3e50;
+  }
+  
+  .grade-score {
+    color: #27ae60;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .classes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  

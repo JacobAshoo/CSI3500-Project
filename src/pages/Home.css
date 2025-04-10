@@ -108,6 +108,37 @@
   box-sizing: border-box;
 }
 
+.grades-widget {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.grades-widget h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.grades-widget ul {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.view-grades-link {
+  display: inline-block;
+  background-color: #27ae60;
+  color: white;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.view-grades-link:hover {
+  background-color: #219653;
+}
+
+
 /* Buttons */
 .user-input-card button {
   padding: 10px 20px;

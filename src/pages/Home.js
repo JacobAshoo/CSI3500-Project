@@ -5,7 +5,6 @@ import './Home.css';
 import '/node_modules/react-grid-layout/css/styles.css';
 import '/node_modules/react-resizable/css/styles.css';
 
-
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const ProgressBox = () => (
@@ -69,14 +68,23 @@ const UserInputCard = () => {
   );
 };
 
+
+const GradesWidget = () => (
+  <div className="grades-widget">
+    <h3>Recent Grades</h3>
+    <ul>
+      <li>Calculus: Quiz 1 - 85%</li>
+      <li>Chemistry: Project - 100%</li>
+    </ul>
+    <Link to="/grades" className="view-grades-link">View All Grades</Link>
+  </div>
+);
+
 const Home = () => {
   const [layout, setLayout] = useState([]);
 
   const widgets = [
-    {
-      id: 'progress',
-      component: ProgressBox
-    },
+    { id: 'progress', component: ProgressBox },
     {
       id: 'recent',
       component: () => (
@@ -95,10 +103,8 @@ const Home = () => {
         />
       )
     },
-    {
-      id: 'goals',
-      component: UserInputCard
-    }
+    { id: 'goals', component: UserInputCard },
+    { id: 'grades', component: GradesWidget } 
   ];
 
   useEffect(() => {
@@ -131,6 +137,7 @@ const Home = () => {
         <Link to="/feedback">Feedback</Link>
         <Link to="/profile">Profile</Link>
         <Link to="/goals">Goals</Link>
+        <Link to="/grades">Grades</Link>
       </div>
 
       <h2>Welcome, Student!</h2>
