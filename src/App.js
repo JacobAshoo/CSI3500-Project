@@ -7,6 +7,7 @@ import RecommendedResources from './pages/RecommendedResources';
 import Profile from './pages/Profile';
 import Goals from './pages/Goals';
 import Feedback from './pages/Feedback';
+import Grades from './pages/Grades';
 import './App.css';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/goals" element={<Goals />} />
           <Route path="/feedback" element={<Feedback />} />
+          <Route path="/grades" element={<Grades />} />
         </Routes>
       </div>
     </Router>
